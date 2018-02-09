@@ -1,0 +1,166 @@
+@import "style.css";
+body{
+	margin: 0;
+	font-family: Arial,Sans Serif;
+}
+header{
+	background: #EFEFEF;
+}
+.menu-top{
+	background: #273b47;
+	display: flex;
+	justify-content: space-between;
+	padding: 10px 15px;
+	align-items: center;
+}
+.menu-top figure{
+	margin: 0;
+	width: 150px;
+}
+.menu-top figure img{
+	width: 150px;
+	display: block;
+}
+.menu-top nav{
+	display: flex;
+	align-items: center;
+}
+.menu-top nav .btn-sesion{
+	color: white;
+	text-decoration: none;
+	font-size: 20px;
+	font-family: Arial,Sans Serif;
+	background: #FF4842;
+	padding: 5px 10px;
+	border-radius: 7px;
+}
+.menu-top nav ul{
+	margin: 0;
+	padding-left: 0;
+	display: flex;
+}
+.menu-top nav ul span{
+	color: white;
+}
+.menu-top nav ul li{
+	list-style: none;
+	margin-right: 5px;
+	margin-left: 5px;
+}
+.menu-top nav ul li a{
+	color: white;
+	text-decoration: none;
+	padding: 19px 5px;
+	font-family: Arial,Sans Serif;
+	font-size: 20px;
+	border-top: 4px solid transparent;
+	transition: .3s;
+}
+.menu-top nav ul li a:hover{
+	border-top: 4px solid #7DCD40;
+	transition: .3s;
+}
+.contenedor{
+	width: 1024px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.buscador{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: right;
+}
+.btn-buscar{
+	background: #333333;
+	color: white;
+	padding: 5px;
+	border-radius: 5px;
+	display: inline-block;
+	vertical-align: top;
+	text-decoration: none;
+}
+.buscar{
+	display: inline-block;
+	vertical-align: top;
+	padding: 4px;
+}
+.info-general{
+	margin-bottom: 50px;
+	position: relative;
+}
+.info-general figure{
+	margin: 0;
+}
+.info-general figure img{
+	width: 100%;
+	display: block;
+}
+.info{
+	width: 500px;
+	font-family: Arial, Sans Serif;
+	background: rgba(255,255,255,.7);
+	padding: 10px;
+	position: absolute;
+	bottom: 30px;
+	left: 30px;
+}
+.info .persona figure{
+	width: 50px;
+	margin: 0;
+}
+.persona{
+	display: flex;
+	align-items: center;
+	position: relative;
+	padding: 0 10px;
+}
+.persona figure img{
+	width: 100%;
+	display: block;
+	border-radius: 50%
+}
+.persona span{
+	margin-left: 10px;
+}
+.fecha{
+	position: absolute;
+	right: 10px;
+}
+.fila{
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+.columnas{
+	width: 300px;
+}
+.columnas figure{
+	margin: 0;
+}
+.titulo-columnas{
+	color: %515151;
+}
+.dato-pequeno{
+	font-size: 14px;
+	display: flex;
+	justify-content: space-between;
+}
+.footer{
+	text-align: center;
+	padding: 10px;
+	margin-bottom: 40px;
+	color: #515151;
+}
+.footer span{
+	margin: 0 5px;
+}
+.footer span a{
+	margin: 0 5px;
+	text-decoration: none;
+	color: #666666;
+	padding: 7px;
+}
+.borde{
+	border: 1px solid #cccccc;
+	background: #EAEAEA; 
+}
