@@ -1,2 +1,2 @@
-# platzi-blog
-Primer proyecto de Diseño Web
+# Proyecto
+Proyecto Tienda EDICAS
