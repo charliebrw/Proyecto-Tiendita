@@ -105,6 +105,7 @@ h1, h2, h3, h4, h5, h6 {
     height: 0;
     overflow: hidden;
     transition: height .3s linear;
+    background: black;
 }
 
 .menu__link {
@@ -249,18 +250,16 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 15px;
 }
 
-
-.column--33 img {
-    width: 30px;
-    height: 30px;
-    margin: 8px;
-}
-
 .column-redes {
     display: flex;
     margin: 8px;
 }
 
+.column-redes img{
+    width: 30px;
+    height: 30px;
+    margin: 8px;
+}
 
 .main-footer .column__txt a{
     color: white;
@@ -298,7 +297,9 @@ h1, h2, h3, h4, h5, h6 {
         z-index: -1000;
     }
     
-    
+    .banner_content {
+        margin-top: 10px;
+    }
     .column--50 {
         width: 49%;
     }
@@ -307,18 +308,128 @@ h1, h2, h3, h4, h5, h6 {
         width: 49%;
     }
     
+    .main {
+        padding-bottom: 100px;
+    }
     .main__about__description .btn {
-        margin: 0;
+        margin:  0;
     }
     
-    .today__special .column {
+    .today-special .column {
         border: 10px solid #ddd;
+        padding: 5px;
+    }
+    
+    .today-special__img {
+        height: 200px;
+        object-fit: cover;
     }
 }
 
+@media screen and (min-width:768px){
+    
+    .main_title {
+        font-size: 2.2em;
+    }
+    
+    .main__about__description {
+        margin-top: 30px;
+    }
+    .main__about__description .column:nth-child(2){
+        font-size: 1em;
+    }
+    .main__about__description .column:nth-child(2) .column__txt{
+        line-height: 30px;
+    }
+    .column--50-25 {
+        width: 24.5%;
+    }
+    
+    .column__title{
+        font-size: 1em;
+    }
+    
+    .group_title{
+        font-size: 2.2em;
+    }
+}
 
+@media screen and (min-width:1024px){
+    .container {
+        width: 1000px;
+    }
+    .main-header__contactInfo{
+       display: none;
+    }
+    
+    .main-nav{
+        padding: 0;
+    }
+    
+    .banner__content {
+        font-size: 2.5em;
+    }
+    
+    .icon-menu {
+        display: none;
+    }
+    
+    .menu {
+        position: static;
+        display: flex;
+        height: auto;
+        width: auto;
+    }
+    
+    .menu__link{
+        padding: 20px;
+    }
+    
+    .group--color .container {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        padding: 20px;
+    }
+    
+    .main_title{
+        font-size: 2.3em;
+    }
+    
+    .main__about__description .column:nth-child(2) .column__txt{
+        line-height: 50px;
+    }
+    
+    .today-special__title {
+        font-size: 1.4em;;
+    }
+    
+    .today-special__price {
+        font-size: 1.8em;
+    }
+    
+    .main-footer {
+        padding-top: 30px;
+        padding-bottom: 30px; 
+    }
+}
 
-
+@media screen and (min-width:1600px){
+    .container {
+        width: 1600px;
+    }
+    .banner img {
+        height: 800px;
+    }
+    .img-main {
+        height: 400px;
+        object-fit: cover;
+    }
+    
+    .today-special img {
+        height: 300px;
+        object-fit: cover;
+    }
+}
 
 
 
