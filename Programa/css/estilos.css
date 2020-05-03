@@ -52,19 +52,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .main-header__contactInfo__phone {
-    background: #DE423A;
     color: white;
-    display: flex;
+    margin-right: 20px;
 }
 
 .main-header__contactInfo__address {
-    display: flex;
+    margin-right: 20px;
 } 
 
-.main-header [class*="icon-"] {
-    width: 5.5%;
-    margin: 11px;
-}
 
 /*----------------Menú------------*/
 
@@ -75,15 +70,6 @@ h1, h2, h3, h4, h5, h6 {
     padding: 10px;
 }
 
-.icon-menu {
-    display: block;
-    color: white;
-    width: 6%;  
-    border: 2px solid white;
-    border-radius: 5px;
-    width: 38px;
-    height: 38px;
-}
 
 .social-icon {
    display: flex;
@@ -94,38 +80,8 @@ h1, h2, h3, h4, h5, h6 {
     width: 35px;
 }
 
-.menu {
-    position: absolute;
-    top: 65px;
-    left: 0;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    height: 0;
-    overflow: hidden;
-    transition: height .3s linear;
-    background: black;
-}
 
-.menu__link {
-    display: block;
-    padding: 15px;
-    color: white;
-    text-decoration: none;
-}
 
-.menu__link:hover {
-    background:  #DE423A;
-}
-
-.menu__link--select {
-    background:  #DE423A;
-}
-
-.mostrar{
-    height: 196px;
-}
 /*-----------Estilos de banner---------*/
 
 .banner {
@@ -155,7 +111,7 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     position: absolute;
     z-index: 1500;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     font-size: 2em;
@@ -250,23 +206,10 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 15px;
 }
 
-.column-redes {
-    display: flex;
-    margin: 8px;
-}
 
-.column-redes img{
-    width: 30px;
-    height: 30px;
-    margin: 8px;
-}
-
-.main-footer .column__txt a{
-    color: white;
-    text-decoration: none;
-    left: 2px;
-    margin: 2px;
-}
+.main-footer .column--50{
+    padding: 5px;
+    }
 
 /*------------Estilos responsive----------------*/
 
@@ -282,8 +225,7 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .main-header__contactInfo [class*="main-header__contactInfo__"]{
-        color: black;
-        background: rgba(255,255,255,0.9);
+        color: white;
         font-weight: bold;
         
     }
@@ -324,6 +266,8 @@ h1, h2, h3, h4, h5, h6 {
         height: 200px;
         object-fit: cover;
     }
+    
+    
 }
 
 @media screen and (min-width:768px){
@@ -357,9 +301,6 @@ h1, h2, h3, h4, h5, h6 {
 @media screen and (min-width:1024px){
     .container {
         width: 1000px;
-    }
-    .main-header__contactInfo{
-       display: none;
     }
     
     .main-nav{
