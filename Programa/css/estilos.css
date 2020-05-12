@@ -578,13 +578,50 @@ h1, h2, h3, h4, h5, h6 {
     
 }
 
+/*-----------REGISTRAR PRODUCTO------------*/
 
+.form_registrar_producto{
+    position: relative;
+    width: 25%;
+    background: #222;
+    padding: 3%;
+    margin: auto;
+    border-radius: 20px;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    box-shadow: 7px 13px 37px #000;
+}
 
+.form_registrar_producto h1{
+    font-size: 200%;
+    margin-bottom: 10%;
+    font-family: 'Pacifico',cursive;
+}
 
+.controles{
+    width: 100%;
+    background: #222; 
+    margin-bottom: 5%;
+    padding: 3%;
+    border-radius: 7px;
+    border: 1px solid orange;
+    font-size: 18px;
+    color: white;
+}
 
+.botones{
+    width: 40%;
+    background: orange;
+    border: none;
+    padding: 5%;
+    color: white;
+    margin: 4.5%;
+    font-size: 100%;
+}
 
-
-
-
-
-
+.main_registrar_producto{
+    padding: 3.3%;
+    background-image: url(../img/Fondo.jpg);
+    background-size: cover;
+    background-position: center;
+}
