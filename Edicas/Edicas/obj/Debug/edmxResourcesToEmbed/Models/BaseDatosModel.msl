@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbEdicaModelStoreContainer" CdmEntityContainer="dbEdicaEntities">
+    <EntitySetMapping Name="Cargo">
+      <EntityTypeMapping TypeName="dbEdicaModel.Cargo">
+        <MappingFragment StoreEntitySet="Cargo">
+          <ScalarProperty Name="IDCargo" ColumnName="IDCargo" />
+          <ScalarProperty Name="cargoNombre" ColumnName="cargoNombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categoria">
+      <EntityTypeMapping TypeName="dbEdicaModel.Categoria">
+        <MappingFragment StoreEntitySet="Categoria">
+          <ScalarProperty Name="IDCategoria" ColumnName="IDCategoria" />
+          <ScalarProperty Name="catNombre" ColumnName="catNombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DetalleIngreso">
+      <EntityTypeMapping TypeName="dbEdicaModel.DetalleIngreso">
+        <MappingFragment StoreEntitySet="DetalleIngreso">
+          <ScalarProperty Name="IDIngreso" ColumnName="IDIngreso" />
+          <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
+          <ScalarProperty Name="detCantidad" ColumnName="detCantidad" />
+          <ScalarProperty Name="detPrecio" ColumnName="detPrecio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DetalleVenta">
+      <EntityTypeMapping TypeName="dbEdicaModel.DetalleVenta">
+        <MappingFragment StoreEntitySet="DetalleVenta">
+          <ScalarProperty Name="IDVenta" ColumnName="IDVenta" />
+          <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
+          <ScalarProperty Name="dvenCantidad" ColumnName="dvenCantidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ingreso">
+      <EntityTypeMapping TypeName="dbEdicaModel.Ingreso">
+        <MappingFragment StoreEntitySet="Ingreso">
+          <ScalarProperty Name="IDIngreso" ColumnName="IDIngreso" />
+          <ScalarProperty Name="DNI" ColumnName="DNI" />
+          <ScalarProperty Name="IDProveedor" ColumnName="IDProveedor" />
+          <ScalarProperty Name="ingFecha" ColumnName="ingFecha" />
+          <ScalarProperty Name="ingTotal" ColumnName="ingTotal" />
+          <ScalarProperty Name="ingEstado" ColumnName="ingEstado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Producto">
+      <EntityTypeMapping TypeName="dbEdicaModel.Producto">
+        <MappingFragment StoreEntitySet="Producto">
+          <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
+          <ScalarProperty Name="proNombre" ColumnName="proNombre" />
+          <ScalarProperty Name="proPrecioVenta" ColumnName="proPrecioVenta" />
+          <ScalarProperty Name="proCantidad" ColumnName="proCantidad" />
+          <ScalarProperty Name="IDProveedor" ColumnName="IDProveedor" />
+          <ScalarProperty Name="IDCategoria" ColumnName="IDCategoria" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Proveedor">
+      <EntityTypeMapping TypeName="dbEdicaModel.Proveedor">
+        <MappingFragment StoreEntitySet="Proveedor">
+          <ScalarProperty Name="IDProveedor" ColumnName="IDProveedor" />
+          <ScalarProperty Name="provNombre" ColumnName="provNombre" />
+          <ScalarProperty Name="provDireccion" ColumnName="provDireccion" />
+          <ScalarProperty Name="provTelefono" ColumnName="provTelefono" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="provTipoDocumento" ColumnName="provTipoDocumento" />
+          <ScalarProperty Name="provNumeroDocumento" ColumnName="provNumeroDocumento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="dbEdicaModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="DNI" ColumnName="DNI" />
+          <ScalarProperty Name="uUsuario" ColumnName="uUsuario" />
+          <ScalarProperty Name="uContraseña" ColumnName="uContraseña" />
+          <ScalarProperty Name="uNombres" ColumnName="uNombres" />
+          <ScalarProperty Name="uDireccion" ColumnName="uDireccion" />
+          <ScalarProperty Name="uTelefono" ColumnName="uTelefono" />
+          <ScalarProperty Name="uEmail" ColumnName="uEmail" />
+          <ScalarProperty Name="IDCargo" ColumnName="IDCargo" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Venta">
+      <EntityTypeMapping TypeName="dbEdicaModel.Venta">
+        <MappingFragment StoreEntitySet="Venta">
+          <ScalarProperty Name="IDVenta" ColumnName="IDVenta" />
+          <ScalarProperty Name="venFecha" ColumnName="venFecha" />
+          <ScalarProperty Name="DNI" ColumnName="DNI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

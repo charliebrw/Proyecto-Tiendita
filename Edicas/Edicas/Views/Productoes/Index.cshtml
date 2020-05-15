@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Edicas.Models.Producto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<img src="~/img/Bodega.jpg" class="card-img-top" alt="" style="height:250px; object-fit:cover" />
+
+<div class="container" style="padding:25px">
+    <h1 style="padding-bottom:15px">Productos</h1>
+    @Html.ActionLink("Registrar nuevo", "Create", null, new { @class = "btn btn-lg btn-info"})
+</div>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">
+                Nombre              
+            </th>
+            <th scope="col">
+                Precio             
+            </th>
+            <th scope="col">
+                Cantidad              
+            </th>
+            <th scope="col">
+                Categoría           
+            </th>
+            <th scope="col">
+                Proveedor              
+            </th>
+        </tr>
+    </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.proNombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.proPrecioVenta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.proCantidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categoria.catNombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Proveedor.provNombre)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.IDProducto }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.IDProducto }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.IDProducto })
+                </td>
+            </tr>
+        }
+
+</table>

@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<nav class="navbar" style="background:#DE423A">
+    <form class="form-inline">
+        @Html.ActionLink("Producto", "Index", "Productoes", null, new { @class = "btn nav-link" })
+        @Html.ActionLink("Categoria", "Index", "Categorias", null, new { @class = "btn nav-link" })
+        @Html.ActionLink("Proveedores", "Index", "Proveedors", null, new { @class = "btn nav-link" })
+    </form>
+</nav>

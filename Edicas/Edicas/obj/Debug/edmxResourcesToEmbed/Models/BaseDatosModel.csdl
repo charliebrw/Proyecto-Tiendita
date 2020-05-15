@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbEdicaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cargo">
+    <Key>
+      <PropertyRef Name="IDCargo" />
+    </Key>
+    <Property Name="IDCargo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cargoNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK__Usuario__Estado__164452B1" FromRole="Cargo" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Categoria">
+    <Key>
+      <PropertyRef Name="IDCategoria" />
+    </Key>
+    <Property Name="IDCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="catNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__IDCate__1A14E395" FromRole="Categoria" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="DetalleIngreso">
+    <Key>
+      <PropertyRef Name="IDIngreso" />
+      <PropertyRef Name="IDProducto" />
+    </Key>
+    <Property Name="IDIngreso" Type="Int32" Nullable="false" />
+    <Property Name="IDProducto" Type="Int32" Nullable="false" />
+    <Property Name="detCantidad" Type="Int32" />
+    <Property Name="detPrecio" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Ingreso" Relationship="Self.FK__DetalleIn__IDIng__20C1E124" FromRole="DetalleIngreso" ToRole="Ingreso" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK__DetalleIn__IDPro__21B6055D" FromRole="DetalleIngreso" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="DetalleVenta">
+    <Key>
+      <PropertyRef Name="IDVenta" />
+      <PropertyRef Name="IDProducto" />
+    </Key>
+    <Property Name="IDVenta" Type="Int32" Nullable="false" />
+    <Property Name="IDProducto" Type="Int32" Nullable="false" />
+    <Property Name="dvenCantidad" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Venta" Relationship="Self.FK__DetalleVe__IDVen__276EDEB3" FromRole="DetalleVenta" ToRole="Venta" />
+  </EntityType>
+  <EntityType Name="Ingreso">
+    <Key>
+      <PropertyRef Name="IDIngreso" />
+    </Key>
+    <Property Name="IDIngreso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DNI" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IDProveedor" Type="Int32" Nullable="false" />
+    <Property Name="ingFecha" Type="DateTime" Precision="0" />
+    <Property Name="ingTotal" Type="Int32" />
+    <Property Name="ingEstado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="DetalleIngreso" Relationship="Self.FK__DetalleIn__IDIng__20C1E124" FromRole="Ingreso" ToRole="DetalleIngreso" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK__Ingreso__ingEsta__1CF15040" FromRole="Ingreso" ToRole="Usuario" />
+    <NavigationProperty Name="Proveedor" Relationship="Self.FK__Ingreso__RUC__1DE57479" FromRole="Ingreso" ToRole="Proveedor" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="IDProducto" />
+    </Key>
+    <Property Name="IDProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="proNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="proPrecioVenta" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+    <Property Name="proCantidad" Type="Int32" Nullable="false" />
+    <Property Name="IDProveedor" Type="Int32" Nullable="false" />
+    <Property Name="IDCategoria" Type="Int32" Nullable="false" />
+    <Property Name="Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Categoria" Relationship="Self.FK__Producto__IDCate__1A14E395" FromRole="Producto" ToRole="Categoria" />
+    <NavigationProperty Name="DetalleIngreso" Relationship="Self.FK__DetalleIn__IDPro__21B6055D" FromRole="Producto" ToRole="DetalleIngreso" />
+    <NavigationProperty Name="Proveedor" Relationship="Self.FK__Producto__RUC__1920BF5C" FromRole="Producto" ToRole="Proveedor" />
+  </EntityType>
+  <EntityType Name="Proveedor">
+    <Key>
+      <PropertyRef Name="IDProveedor" />
+    </Key>
+    <Property Name="IDProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="provNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="provDireccion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="provTelefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Estado" Type="Boolean" Nullable="false" />
+    <Property Name="provTipoDocumento" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="provNumeroDocumento" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Ingreso" Relationship="Self.FK__Ingreso__RUC__1DE57479" FromRole="Proveedor" ToRole="Ingreso" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__RUC__1920BF5C" FromRole="Proveedor" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="DNI" />
+    </Key>
+    <Property Name="DNI" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="uUsuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="uContraseña" Type="Binary" MaxLength="50" FixedLength="false" Nullable="false" />
+    <Property Name="uNombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="uDireccion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="uTelefono" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+    <Property Name="uEmail" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="IDCargo" Type="Int32" />
+    <Property Name="Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Cargo" Relationship="Self.FK__Usuario__Estado__164452B1" FromRole="Usuario" ToRole="Cargo" />
+    <NavigationProperty Name="Ingreso" Relationship="Self.FK__Ingreso__ingEsta__1CF15040" FromRole="Usuario" ToRole="Ingreso" />
+    <NavigationProperty Name="Venta" Relationship="Self.FK__Venta__DNI__24927208" FromRole="Usuario" ToRole="Venta" />
+  </EntityType>
+  <EntityType Name="Venta">
+    <Key>
+      <PropertyRef Name="IDVenta" />
+    </Key>
+    <Property Name="IDVenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="venFecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DNI" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="DetalleVenta" Relationship="Self.FK__DetalleVe__IDVen__276EDEB3" FromRole="Venta" ToRole="DetalleVenta" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK__Venta__DNI__24927208" FromRole="Venta" ToRole="Usuario" />
+  </EntityType>
+  <Association Name="FK__Usuario__Estado__164452B1">
+    <End Role="Cargo" Type="Self.Cargo" Multiplicity="0..1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cargo">
+        <PropertyRef Name="IDCargo" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="IDCargo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Producto__IDCate__1A14E395">
+    <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="IDCategoria" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="IDCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DetalleIn__IDIng__20C1E124">
+    <End Role="Ingreso" Type="Self.Ingreso" Multiplicity="1" />
+    <End Role="DetalleIngreso" Type="Self.DetalleIngreso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ingreso">
+        <PropertyRef Name="IDIngreso" />
+      </Principal>
+      <Dependent Role="DetalleIngreso">
+        <PropertyRef Name="IDIngreso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DetalleIn__IDPro__21B6055D">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="DetalleIngreso" Type="Self.DetalleIngreso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="IDProducto" />
+      </Principal>
+      <Dependent Role="DetalleIngreso">
+        <PropertyRef Name="IDProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DetalleVe__IDVen__276EDEB3">
+    <End Role="Venta" Type="Self.Venta" Multiplicity="1" />
+    <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta">
+        <PropertyRef Name="IDVenta" />
+      </Principal>
+      <Dependent Role="DetalleVenta">
+        <PropertyRef Name="IDVenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ingreso__ingEsta__1CF15040">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Ingreso" Type="Self.Ingreso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="DNI" />
+      </Principal>
+      <Dependent Role="Ingreso">
+        <PropertyRef Name="DNI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ingreso__RUC__1DE57479">
+    <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+    <End Role="Ingreso" Type="Self.Ingreso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedor">
+        <PropertyRef Name="IDProveedor" />
+      </Principal>
+      <Dependent Role="Ingreso">
+        <PropertyRef Name="IDProveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Producto__RUC__1920BF5C">
+    <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedor">
+        <PropertyRef Name="IDProveedor" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="IDProveedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Venta__DNI__24927208">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="DNI" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="DNI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbEdicaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cargo" EntityType="Self.Cargo" />
+    <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+    <EntitySet Name="DetalleIngreso" EntityType="Self.DetalleIngreso" />
+    <EntitySet Name="DetalleVenta" EntityType="Self.DetalleVenta" />
+    <EntitySet Name="Ingreso" EntityType="Self.Ingreso" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" />
+    <EntitySet Name="Proveedor" EntityType="Self.Proveedor" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <EntitySet Name="Venta" EntityType="Self.Venta" />
+    <AssociationSet Name="FK__Usuario__Estado__164452B1" Association="Self.FK__Usuario__Estado__164452B1">
+      <End Role="Cargo" EntitySet="Cargo" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Producto__IDCate__1A14E395" Association="Self.FK__Producto__IDCate__1A14E395">
+      <End Role="Categoria" EntitySet="Categoria" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DetalleIn__IDIng__20C1E124" Association="Self.FK__DetalleIn__IDIng__20C1E124">
+      <End Role="Ingreso" EntitySet="Ingreso" />
+      <End Role="DetalleIngreso" EntitySet="DetalleIngreso" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DetalleIn__IDPro__21B6055D" Association="Self.FK__DetalleIn__IDPro__21B6055D">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="DetalleIngreso" EntitySet="DetalleIngreso" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DetalleVe__IDVen__276EDEB3" Association="Self.FK__DetalleVe__IDVen__276EDEB3">
+      <End Role="Venta" EntitySet="Venta" />
+      <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ingreso__ingEsta__1CF15040" Association="Self.FK__Ingreso__ingEsta__1CF15040">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Ingreso" EntitySet="Ingreso" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ingreso__RUC__1DE57479" Association="Self.FK__Ingreso__RUC__1DE57479">
+      <End Role="Proveedor" EntitySet="Proveedor" />
+      <End Role="Ingreso" EntitySet="Ingreso" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Producto__RUC__1920BF5C" Association="Self.FK__Producto__RUC__1920BF5C">
+      <End Role="Proveedor" EntitySet="Proveedor" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Venta__DNI__24927208" Association="Self.FK__Venta__DNI__24927208">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Venta" EntitySet="Venta" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
