@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="020979117f9c467daef8c6108789f140" Name="Diagram1">
+        <EntityTypeShape EntityType="dbEdicasModel.Categoria" Width="1.5" PointX="6" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEdicasModel.DetalleIngreso" Width="1.5" PointX="10.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEdicasModel.Documento" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEdicasModel.Ingreso" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEdicasModel.Producto" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEdicasModel.Proveedor" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEdicasModel.Tipo" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEdicasModel.Usuario" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbEdicasModel.Venta" Width="1.5" PointX="10.5" PointY="2.125" IsExpanded="true" />
+        <AssociationConnector Association="dbEdicasModel.FK__Producto__IDCate__1BFD2C07" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEdicasModel.FK__DetalleIn__IDIng__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEdicasModel.FK__DetalleIn__IDPro__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEdicasModel.FK__Proveedor__IDDoc__182C9B23" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEdicasModel.FK__Ingreso__DNI__24927208" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEdicasModel.FK__Ingreso__IDProve__25869641" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEdicasModel.FK__Producto__IDProv__1B0907CE" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEdicasModel.FK__Usuario__IDTipo__1ED998B2" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEdicasModel.FK__Venta__DNI__21B6055D" ManuallyRouted="false" />
+        <AssociationConnector Association="dbEdicasModel.DetalleVenta" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
