@@ -18,7 +18,7 @@
     <Property Name="RUC" Type="varchar" MaxLength="11" Nullable="false" />
     <Property Name="IDCategoria" Type="int" Nullable="false" />
     <Property Name="Estado" Type="bit" Nullable="false" />
-    <Property Name="Imagen" Type="varchar" MaxLength="50" />
+    <Property Name="Imagen" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="Proveedor">
     <Key>

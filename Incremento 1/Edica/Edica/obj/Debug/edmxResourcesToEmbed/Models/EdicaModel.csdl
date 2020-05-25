@@ -19,7 +19,7 @@
     <Property Name="RUC" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="IDCategoria" Type="Int32" Nullable="false" />
     <Property Name="Estado" Type="Boolean" Nullable="false" />
-    <Property Name="Imagen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Categoria" Relationship="Self.FK__Producto__IDCate__25869641" FromRole="Producto" ToRole="Categoria" />
     <NavigationProperty Name="Proveedor" Relationship="Self.FK__Producto__RUC__24927208" FromRole="Producto" ToRole="Proveedor" />
   </EntityType>

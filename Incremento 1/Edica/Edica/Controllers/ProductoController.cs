@@ -5,6 +5,8 @@ using System.Linq;
 using Edica.Models;
 using System.Web.Mvc;
 using System.Data.SqlClient;
+using System.IO;
+using System.Drawing;
 
 namespace Edica.Controllers
 {
@@ -31,7 +33,9 @@ namespace Edica.Controllers
         // GET: Producto/Details/5
         public ActionResult Details(int id)
         {
+
             return View();
+
         }
 
         // GET: Producto/Create
@@ -46,6 +50,12 @@ namespace Edica.Controllers
         [HttpPost]
         public ActionResult Create(Producto producto)
         {
+            string fileName = Path.GetFileNameWithoutExtension(producto.ArchivoImagen.FileName);
+            string extension = Path.GetExtension(producto.ArchivoImagen.FileName);
+            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+            producto.Imagen = "~/Imagen/" + fileName;
+            fileName = Path.Combine(Server.MapPath("~/Imagen/"), fileName);
+            producto.ArchivoImagen.SaveAs(fileName);
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = cn.cad;
             cmd.CommandType = CommandType.StoredProcedure;
@@ -55,9 +65,11 @@ namespace Edica.Controllers
             cmd.Parameters.AddWithValue("@Cantidad", producto.Cantidad);
             cmd.Parameters.AddWithValue("@RUC", producto.RUC);
             cmd.Parameters.AddWithValue("@IDCategoria", producto.IDCategoria);
+            cmd.Parameters.AddWithValue("@Imagen", producto.Imagen);
             cmd.Connection.Open();
             cmd.ExecuteNonQuery();
             cmd.Connection.Close();
+            ModelState.Clear();
             return RedirectToAction("Index");
         }
 
@@ -84,7 +96,7 @@ namespace Edica.Controllers
                 producto.PrecioVenta = Convert.ToDecimal(dt.Rows[0][2].ToString()); 
                 producto.Cantidad = Convert.ToInt32(dt.Rows[0][3].ToString());
                 producto.RUC = dt.Rows[0][4].ToString();
-                producto.IDCategoria = Convert.ToInt32(dt.Rows[0][5].ToString());
+                producto.IDCategoria = Convert.ToInt32(dt.Rows[0][5].ToString());                          
                 ViewBag.RUC = new SelectList(m.Proveedor, "RUC", "Nombre", producto.IDCategoria);
                 ViewBag.IDCategoria = new SelectList(m.Categoria, "IDCategoria", "Nombre", producto.IDCategoria);
                 return View(producto);
@@ -101,20 +113,20 @@ namespace Edica.Controllers
         public ActionResult Edit(Producto producto)
         {
            
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = cn.cad;
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "sp_C_Producto";
-                cmd.Parameters.AddWithValue("@IDProducto",producto.IDProducto);
-                cmd.Parameters.AddWithValue("@Nombre", producto.Nombre);
-                cmd.Parameters.AddWithValue("@PrecioVenta", producto.PrecioVenta);
-                cmd.Parameters.AddWithValue("@Cantidad", producto.Cantidad);
-                cmd.Parameters.AddWithValue("@RUC", producto.RUC);
-                cmd.Parameters.AddWithValue("@IDCategoria", producto.IDCategoria);
-                cmd.Connection.Open();
-                cmd.ExecuteNonQuery();
-                cmd.Connection.Close();
-                return RedirectToAction("Index");
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn.cad;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "sp_C_Producto";
+            cmd.Parameters.AddWithValue("@IDProducto",producto.IDProducto);
+            cmd.Parameters.AddWithValue("@Nombre", producto.Nombre);
+            cmd.Parameters.AddWithValue("@PrecioVenta", producto.PrecioVenta);
+            cmd.Parameters.AddWithValue("@Cantidad", producto.Cantidad);
+            cmd.Parameters.AddWithValue("@RUC", producto.RUC);
+            cmd.Parameters.AddWithValue("@IDCategoria", producto.IDCategoria);
+            cmd.Connection.Open();
+            cmd.ExecuteNonQuery();
+            cmd.Connection.Close();
+            return RedirectToAction("Index");
             
          
         }
