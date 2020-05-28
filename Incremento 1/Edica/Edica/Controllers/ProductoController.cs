@@ -14,9 +14,12 @@ namespace Edica.Controllers
     {
         Conexion cn = new Conexion();
         EdicasEntities m = new EdicasEntities();
+
         // GET: Producto
+
         public ActionResult Index()
         {
+            ViewBag.IDCategoria = new SelectList(m.Categoria, "IDCategoria", "Nombre");
             DataTable dt = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter();
             SqlCommand cmd = new SqlCommand();
@@ -28,6 +31,52 @@ namespace Edica.Controllers
             da.Fill(dt);
             cn.desconectar();
             return View(dt);
+            
+
+        } 
+     
+        [HttpPost]
+        public ActionResult Index(string Nombre)
+        {
+            ViewBag.IDCategoria = new SelectList(m.Categoria, "IDCategoria", "Nombre");
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn.cad;
+            if (Nombre!=null )
+            {    
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "sp_M_ProductoxNombre";
+                    cmd.Parameters.AddWithValue("@Nombre", Nombre);
+                    cn.conectar();
+                    da.SelectCommand = cmd;
+                    da.Fill(dt);
+                    cn.desconectar();
+                    return View(dt);
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+       
+
+        [HttpPost]
+        public ActionResult BuscarxCategoria(Producto producto)
+        {
+            ViewBag.IDCategoria = new SelectList(m.Categoria, "IDCategoria", "Nombre");
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = cn.cad;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "sp_M_ProductoxCategoria";
+            cmd.Parameters.AddWithValue("@IDcategoria", producto.IDCategoria);
+            cn.conectar();
+            da.SelectCommand = cmd;
+            da.Fill(dt);
+            return View("Index",dt);
         }
 
         // GET: Producto/Details/5
