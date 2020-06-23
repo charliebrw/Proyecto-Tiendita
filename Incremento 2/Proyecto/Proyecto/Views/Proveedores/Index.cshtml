@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Proyecto.Models.sp_C_Proveedores_Result>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.provNombres)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.provDireccion)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.provTelefono)
+            </th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th scope="row">#</th>
+            <td>
+                @Html.DisplayFor(modelItem => item.provNombres)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.provDireccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.provTelefono)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { ruc = item.RUC }, htmlAttributes: new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Delete", "Delete", new { ruc = item.RUC, @class = "btn btn-danger" }, htmlAttributes: new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,131 @@
+﻿@model IEnumerable<Proyecto.Models.sp_C_Productos_Result>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="margin-bottom:20px">Lista de productos</h2>
+
+
+
+
+@using (Html.BeginForm("buscarxNombre", "Productos", FormMethod.Post))
+{
+    <div class="container row" style="margin-bottom:20px">
+        <h4 class="col-form-label">Buscar por nombre:</h4>
+        <input type="text" required name="Nombre" class="form-control" style="margin-left:5px; margin-right:20px;width:200px" />
+        <input type="submit" value="Buscar" class="btn btn-primary" />
+    </div>
+}
+
+@using (Html.BeginForm("buscarxCategoria", "Productos", FormMethod.Post))
+{
+    <div class="container row" style="margin-bottom:20px">
+        <h4 class="col-form-label">Buscar por categoria:</h4>
+        <div class="col-auto">
+            @Html.DropDownList("IDCategoria", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+        <input type="submit" value="Buscar" class="btn btn-primary" />
+    </div>
+}
+
+    <div class="container">
+        <div class="row" style="margin-bottom:20px">
+            <div class="col justify-content-start">
+                @Html.ActionLink("Crear nuevo", "Create", routeValues: null, htmlAttributes: new { @class = "btn btn-success" })
+            </div>
+            <div class="col justify-content-end">
+                @using (Html.BeginForm("buscarProductosAgotados", "Productos", FormMethod.Post))
+                {
+                    <input type="submit" value="Productos agotados" class="btn btn-secondary"/>   
+                }
+            </div>
+        </div>
+    </div>
+
+
+
+
+@if (Model.Count() == 0)
+{
+    <div class="alert alert-danger" role="alert">No existe ningún producto en catálogo.</div>
+}
+else
+{
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Cantidad
+                </th>
+                <th>
+                    Precio
+                </th>
+                <th>
+                    Categoría
+                </th>
+                <th>
+                    Proveedor
+                </th>
+                <th>
+                    Imagen
+                </th>
+                <th>
+                    Agregar Cantidad
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.proNombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.proCantidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.proPrecioVenta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.catNombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.provNombres)
+                </td>
+                <td>
+                    <img width="100" height="100" src="@Url.Action("obtenerImagen","Productos",new { id = item.IDProducto})" alt="Alternate Text" />
+                </td>
+                <td>
+
+                    @using (Html.BeginForm("agregarCantidad", "Productos", FormMethod.Post))
+                    {
+                        <div class="container">
+                            <div class="row">
+                                <input type="hidden" name="id" value="@item.IDProducto" />
+                                <input type="number" required min="1" name="cantidad" class="form-control col-12 col-sm-12 col-md-12 col-lg-5" style="margin-right:5px" />
+                                <input type="submit" value="+" class="btn btn-primary col col-sm col-md col-lg-3" />
+                            </div>
+                        </div>
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.IDProducto }, htmlAttributes: new { @class = "btn btn-info" }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.IDProducto }, htmlAttributes: new { @class = "btn btn-danger" })
+                </td>
+
+
+            </tr>
+        }
+
+    </table>
+}
+
+
+
