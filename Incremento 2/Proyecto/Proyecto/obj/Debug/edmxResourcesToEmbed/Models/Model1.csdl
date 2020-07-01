@@ -71,6 +71,7 @@
     <Property Name="proEstado" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Categorias" Relationship="Self.FK__Productos__IDCat__239E4DCF" FromRole="Productos" ToRole="Categorias" />
     <NavigationProperty Name="Proveedores" Relationship="Self.FK__Productos__RUC__24927208" FromRole="Productos" ToRole="Proveedores" />
+    <NavigationProperty Name="DetalleVenta" Relationship="EdicasModel.FK__DetalleVe__IDPro__6383C8BA" FromRole="Productos" ToRole="DetalleVenta" />
   </EntityType>
   <EntityType Name="Proveedores">
     <Key>
@@ -224,6 +225,31 @@
       <Parameter Name="proCantidad" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="sp_C_Usuarios_Roles" ReturnType="Collection(EdicasModel.sp_C_Usuarios_Roles_Result)" />
+    <EntitySet Name="DetalleVenta" EntityType="EdicasModel.DetalleVenta" />
+    <EntitySet Name="Ventas" EntityType="EdicasModel.Ventas" />
+    <AssociationSet Name="FK__DetalleVe__IDPro__6383C8BA" Association="EdicasModel.FK__DetalleVe__IDPro__6383C8BA">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DetalleVe__IDVen__628FA481" Association="EdicasModel.FK__DetalleVe__IDVen__628FA481">
+      <End Role="Ventas" EntitySet="Ventas" />
+      <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+    </AssociationSet>
+    <FunctionImport Name="sp_A_Venta" ReturnType="Collection(EdicasModel.sp_C_IDVenta_Result)">
+      <Parameter Name="SubTotal" Mode="In" Type="Decimal" />
+      <Parameter Name="Total" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="sp_A_DetalleVenta">
+      <Parameter Name="IDVenta" Mode="In" Type="Int32" />
+      <Parameter Name="IDProducto" Mode="In" Type="Int32" />
+      <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+      <Parameter Name="SubTotal" Mode="In" Type="Decimal" />
+      <Parameter Name="Precio" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="sp_M_Venta_Stock">
+      <Parameter Name="IDProducto" Mode="In" Type="Int32" />
+      <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_C_Productos_Result">
     <Property Type="Int32" Name="IDProducto" Nullable="false" />
@@ -282,5 +308,55 @@
     <Property Type="String" Name="Id" Nullable="false" MaxLength="128" />
     <Property Type="String" Name="Email" Nullable="true" MaxLength="256" />
     <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+  </ComplexType>
+  <EntityType Name="DetalleVenta">
+    <Key>
+      <PropertyRef Name="IDDetalleVenta" />
+    </Key>
+    <Property Name="IDDetalleVenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDVenta" Type="Int32" />
+    <Property Name="IDProducto" Type="Int32" />
+    <Property Name="Cantidad" Type="Int32" Nullable="false" />
+    <Property Name="SubTotal" Type="Decimal" Nullable="false" Precision="7" Scale="2" />
+    <Property Name="Precio" Type="Decimal" Precision="7" Scale="2" />
+    <NavigationProperty Name="Productos" Relationship="EdicasModel.FK__DetalleVe__IDPro__6383C8BA" FromRole="DetalleVenta" ToRole="Productos" />
+    <NavigationProperty Name="Ventas" Relationship="EdicasModel.FK__DetalleVe__IDVen__628FA481" FromRole="DetalleVenta" ToRole="Ventas" />
+  </EntityType>
+  <EntityType Name="Ventas">
+    <Key>
+      <PropertyRef Name="IDVenta" />
+    </Key>
+    <Property Name="IDVenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Subtotal" Type="Decimal" Nullable="false" Precision="7" Scale="2" />
+    <Property Name="Total" Type="Decimal" Nullable="false" Precision="7" Scale="2" />
+    <NavigationProperty Name="DetalleVenta" Relationship="EdicasModel.FK__DetalleVe__IDVen__628FA481" FromRole="Ventas" ToRole="DetalleVenta" />
+  </EntityType>
+  <Association Name="FK__DetalleVe__IDPro__6383C8BA">
+    <End Type="EdicasModel.Productos" Role="Productos" Multiplicity="0..1" />
+    <End Type="EdicasModel.DetalleVenta" Role="DetalleVenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="IDProducto" />
+      </Principal>
+      <Dependent Role="DetalleVenta">
+        <PropertyRef Name="IDProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DetalleVe__IDVen__628FA481">
+    <End Type="EdicasModel.Ventas" Role="Ventas" Multiplicity="0..1" />
+    <End Type="EdicasModel.DetalleVenta" Role="DetalleVenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ventas">
+        <PropertyRef Name="IDVenta" />
+      </Principal>
+      <Dependent Role="DetalleVenta">
+        <PropertyRef Name="IDVenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="sp_C_IDVenta_Result">
+    <Property Type="Int32" Name="IDVenta" Nullable="false" />
   </ComplexType>
 </Schema>

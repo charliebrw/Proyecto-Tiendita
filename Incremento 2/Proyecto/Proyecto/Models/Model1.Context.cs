@@ -34,6 +34,8 @@ namespace Proyecto.Models
         public virtual DbSet<Categorias> Categorias { get; set; }
         public virtual DbSet<Productos> Productos { get; set; }
         public virtual DbSet<Proveedores> Proveedores { get; set; }
+        public virtual DbSet<DetalleVenta> DetalleVenta { get; set; }
+        public virtual DbSet<Ventas> Ventas { get; set; }
     
         public virtual int sp_A_Producto(string proNombre, Nullable<int> proCantidad, Nullable<decimal> proPrecioVenta, Nullable<int> iDCategoria, string rUC, byte[] proImagen)
         {
@@ -229,6 +231,57 @@ namespace Proyecto.Models
         public virtual ObjectResult<sp_C_Usuarios_Roles_Result> sp_C_Usuarios_Roles()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_C_Usuarios_Roles_Result>("sp_C_Usuarios_Roles");
+        }
+    
+        public virtual ObjectResult<sp_C_IDVenta_Result> sp_A_Venta(Nullable<decimal> subTotal, Nullable<decimal> total)
+        {
+            var subTotalParameter = subTotal.HasValue ?
+                new ObjectParameter("SubTotal", subTotal) :
+                new ObjectParameter("SubTotal", typeof(decimal));
+    
+            var totalParameter = total.HasValue ?
+                new ObjectParameter("Total", total) :
+                new ObjectParameter("Total", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_C_IDVenta_Result>("sp_A_Venta", subTotalParameter, totalParameter);
+        }
+    
+        public virtual int sp_A_DetalleVenta(Nullable<int> iDVenta, Nullable<int> iDProducto, Nullable<int> cantidad, Nullable<decimal> subTotal, Nullable<decimal> precio)
+        {
+            var iDVentaParameter = iDVenta.HasValue ?
+                new ObjectParameter("IDVenta", iDVenta) :
+                new ObjectParameter("IDVenta", typeof(int));
+    
+            var iDProductoParameter = iDProducto.HasValue ?
+                new ObjectParameter("IDProducto", iDProducto) :
+                new ObjectParameter("IDProducto", typeof(int));
+    
+            var cantidadParameter = cantidad.HasValue ?
+                new ObjectParameter("Cantidad", cantidad) :
+                new ObjectParameter("Cantidad", typeof(int));
+    
+            var subTotalParameter = subTotal.HasValue ?
+                new ObjectParameter("SubTotal", subTotal) :
+                new ObjectParameter("SubTotal", typeof(decimal));
+    
+            var precioParameter = precio.HasValue ?
+                new ObjectParameter("Precio", precio) :
+                new ObjectParameter("Precio", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_A_DetalleVenta", iDVentaParameter, iDProductoParameter, cantidadParameter, subTotalParameter, precioParameter);
+        }
+    
+        public virtual int sp_M_Venta_Stock(Nullable<int> iDProducto, Nullable<int> cantidad)
+        {
+            var iDProductoParameter = iDProducto.HasValue ?
+                new ObjectParameter("IDProducto", iDProducto) :
+                new ObjectParameter("IDProducto", typeof(int));
+    
+            var cantidadParameter = cantidad.HasValue ?
+                new ObjectParameter("Cantidad", cantidad) :
+                new ObjectParameter("Cantidad", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_M_Venta_Stock", iDProductoParameter, cantidadParameter);
         }
     }
 }

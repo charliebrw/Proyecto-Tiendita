@@ -185,5 +185,36 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="DetalleVenta">
+      <EntityTypeMapping TypeName="EdicasModel.DetalleVenta">
+        <MappingFragment StoreEntitySet="DetalleVenta">
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="IDProducto" ColumnName="IDProducto" />
+          <ScalarProperty Name="IDVenta" ColumnName="IDVenta" />
+          <ScalarProperty Name="IDDetalleVenta" ColumnName="IDDetalleVenta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ventas">
+      <EntityTypeMapping TypeName="EdicasModel.Ventas">
+        <MappingFragment StoreEntitySet="Ventas">
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="IDVenta" ColumnName="IDVenta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_A_Venta" FunctionName="EdicasModel.Store.sp_A_Venta">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EdicasModel.sp_C_IDVenta_Result">
+          <ScalarProperty Name="IDVenta" ColumnName="IDVenta" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_A_DetalleVenta" FunctionName="EdicasModel.Store.sp_A_DetalleVenta" />
+    <FunctionImportMapping FunctionImportName="sp_M_Venta_Stock" FunctionName="EdicasModel.Store.sp_M_Venta_Stock" />
   </EntityContainerMapping>
 </Mapping>

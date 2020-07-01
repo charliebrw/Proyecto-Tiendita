@@ -11,12 +11,16 @@
         <EntityTypeShape EntityType="EdicasModel.AspNetUsers" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="EdicasModel.Categorias" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="EdicasModel.Productos" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="EdicasModel.Proveedores" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EdicasModel.Proveedores" Width="1.5" PointX="0.625" PointY="11.5" IsExpanded="true" />
         <AssociationConnector Association="EdicasModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="EdicasModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="EdicasModel.FK__Productos__IDCat__239E4DCF" ManuallyRouted="false" />
         <AssociationConnector Association="EdicasModel.FK__Productos__RUC__24927208" ManuallyRouted="false" />
         <AssociationConnector Association="EdicasModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EdicasModel.DetalleVenta" Width="1.5" PointX="5.25" PointY="7.25" />
+        <EntityTypeShape EntityType="EdicasModel.Ventas" Width="1.5" PointX="3" PointY="11.375" />
+        <AssociationConnector Association="EdicasModel.FK__DetalleVe__IDPro__6383C8BA" />
+        <AssociationConnector Association="EdicasModel.FK__DetalleVe__IDVen__628FA481" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

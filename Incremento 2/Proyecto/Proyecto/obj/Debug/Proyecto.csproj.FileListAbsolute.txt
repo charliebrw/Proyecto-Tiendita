@@ -1,5 +1,3 @@
-D:\Proyecto\Proyecto\obj\Debug\Proyecto.csprojAssemblyReference.cache
-D:\Proyecto\Proyecto\obj\Debug\Proyecto.csproj.CoreCompileInputs.cache
 D:\Proyecto\Proyecto\bin\Proyecto.dll.config
 D:\Proyecto\Proyecto\bin\Proyecto.dll
 D:\Proyecto\Proyecto\bin\Proyecto.pdb
@@ -112,6 +110,8 @@ D:\Proyecto\Proyecto\bin\es\EntityFramework.SqlServer.resources.dll
 D:\Proyecto\Proyecto\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
 D:\Proyecto\Proyecto\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
 D:\Proyecto\Proyecto\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+D:\Proyecto\Proyecto\obj\Debug\Proyecto.csproj.CoreCompileInputs.cache
 D:\Proyecto\Proyecto\obj\Debug\Proyecto.csproj.CopyComplete
 D:\Proyecto\Proyecto\obj\Debug\Proyecto.dll
 D:\Proyecto\Proyecto\obj\Debug\Proyecto.pdb
+D:\Proyecto\Proyecto\obj\Debug\Proyecto.csprojAssemblyReference.cache

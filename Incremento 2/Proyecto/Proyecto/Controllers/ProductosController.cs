@@ -10,7 +10,6 @@ using Proyecto.Models;
 
 namespace Proyecto.Controllers
 { 
-    [Authorize]
     public class ProductosController : Controller
     {
         EdicasEntities1 db = new EdicasEntities1();

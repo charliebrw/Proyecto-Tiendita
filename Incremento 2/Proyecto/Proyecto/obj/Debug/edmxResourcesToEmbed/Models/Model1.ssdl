@@ -58,6 +58,17 @@
     <Property Name="IDCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="catNombre" Type="varchar" MaxLength="15" Nullable="false" />
   </EntityType>
+  <EntityType Name="DetalleVenta">
+    <Key>
+      <PropertyRef Name="IDDetalleVenta" />
+    </Key>
+    <Property Name="IDDetalleVenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDVenta" Type="int" />
+    <Property Name="IDProducto" Type="int" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="SubTotal" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+    <Property Name="Precio" Type="decimal" Precision="7" Scale="2" />
+  </EntityType>
   <EntityType Name="Productos">
     <Key>
       <PropertyRef Name="IDProducto" />
@@ -81,6 +92,39 @@
     <Property Name="provTelefono" Type="varchar" MaxLength="15" Nullable="false" />
     <Property Name="provEstado" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="Ventas">
+    <Key>
+      <PropertyRef Name="IDVenta" />
+    </Key>
+    <Property Name="IDVenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fecha" Type="date" Nullable="false" />
+    <Property Name="Subtotal" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+    <Property Name="Total" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__DetalleVe__IDPro__6383C8BA">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+    <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="IDProducto" />
+      </Principal>
+      <Dependent Role="DetalleVenta">
+        <PropertyRef Name="IDProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DetalleVe__IDVen__628FA481">
+    <End Role="Ventas" Type="Self.Ventas" Multiplicity="0..1" />
+    <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ventas">
+        <PropertyRef Name="IDVenta" />
+      </Principal>
+      <Dependent Role="DetalleVenta">
+        <PropertyRef Name="IDVenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Productos__IDCat__239E4DCF">
     <End Role="Categorias" Type="Self.Categorias" Multiplicity="1" />
     <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
@@ -164,6 +208,13 @@
   <Function Name="sp_A_Categoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="catNombre" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="sp_A_DetalleVenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDVenta" Type="int" Mode="In" />
+    <Parameter Name="IDProducto" Type="int" Mode="In" />
+    <Parameter Name="Cantidad" Type="int" Mode="In" />
+    <Parameter Name="SubTotal" Type="decimal" Mode="In" />
+    <Parameter Name="Precio" Type="decimal" Mode="In" />
+  </Function>
   <Function Name="sp_A_Producto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="proNombre" Type="varchar" Mode="In" />
     <Parameter Name="proCantidad" Type="int" Mode="In" />
@@ -177,6 +228,10 @@
     <Parameter Name="provNombres" Type="varchar" Mode="In" />
     <Parameter Name="provDireccion" Type="varchar" Mode="In" />
     <Parameter Name="provTelefono" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_A_Venta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SubTotal" Type="decimal" Mode="In" />
+    <Parameter Name="Total" Type="decimal" Mode="In" />
   </Function>
   <Function Name="sp_C_Productos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_C_Productos_Agotados" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -218,6 +273,10 @@
     <Parameter Name="provDireccion" Type="varchar" Mode="In" />
     <Parameter Name="provTelefono" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="sp_M_Venta_Stock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDProducto" Type="int" Mode="In" />
+    <Parameter Name="Cantidad" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="EdicasModelStoreContainer">
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -225,8 +284,18 @@
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Categorias" EntityType="Self.Categorias" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DetalleVenta" EntityType="Self.DetalleVenta" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Proveedores" EntityType="Self.Proveedores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ventas" EntityType="Self.Ventas" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__DetalleVe__IDPro__6383C8BA" Association="Self.FK__DetalleVe__IDPro__6383C8BA">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DetalleVe__IDVen__628FA481" Association="Self.FK__DetalleVe__IDVen__628FA481">
+      <End Role="Ventas" EntitySet="Ventas" />
+      <End Role="DetalleVenta" EntitySet="DetalleVenta" />
+    </AssociationSet>
     <AssociationSet Name="FK__Productos__IDCat__239E4DCF" Association="Self.FK__Productos__IDCat__239E4DCF">
       <End Role="Categorias" EntitySet="Categorias" />
       <End Role="Productos" EntitySet="Productos" />
